@@ -11,6 +11,12 @@ on:
 
 jobs:
   test:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ '3.8', '3.9', '3.10' ]
+
     runs-on: ubuntu-22.04
 
     steps:
