@@ -10,47 +10,33 @@ from keiko.base_models import DataShapeBase
 
 
 class OOI(BaseModel):
-    id: str
-    ooi_type: str
-    human_readable: str
-    object_type: str
+    id: Optional[str]
+    ooi_type: Optional[str]
+    human_readable: Optional[str]
+    object_type: Optional[str]
 
 
 class Finding(OOI):
     proof: Optional[str]
-    description: str
+    description: Optional[str]
     reproduce: Optional[str]
     ooi: OOI
 
 
-class FindingTypeBase(OOI):
+class FindingType(OOI):
     risk_level_source: Optional[str]
-    risk_level_score: float
-    risk_level_severity: str
+    risk_level_score: Optional[float]
+    risk_level_severity: Optional[str]
     Information: Optional[str]
     description: Optional[str]
 
+    cvss: Optional[str]
+    source: Optional[str]
 
-class KATFindingType(FindingTypeBase):
-    ooi_type: Literal["KATFindingType"]
     risk: Optional[str]
     recommendation: Optional[str]
 
-
-class CVEFindingType(FindingTypeBase):
-    ooi_type: Literal["CVEFindingType"]
-    cvss: str
-    source: str
     information_updated: Optional[str] = Field(..., alias="information updated")
-
-
-class RetireJSFindingType(FindingTypeBase):
-    ooi_type: Literal["RetireJSFindingType"]
-    source: str
-    information_updated: Optional[str] = Field(..., alias="information updated")
-
-
-FindingType = Union[KATFindingType, CVEFindingType, RetireJSFindingType]
 
 
 class FindingOccurrence(BaseModel):
