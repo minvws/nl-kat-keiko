@@ -42,7 +42,7 @@ repos:
       rev: v2.15.2
       hooks:
           - id: pylint
-            exclude: "tests|templates|packaging"
+            exclude: "tests|templates"
             additional_dependencies: ['types-PyYAML', 'types-requests', 'pydantic', 'fastapi', 'click', 'jinja2']
 
     - repo: https://github.com/PyCQA/pydocstyle
